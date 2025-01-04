@@ -53,30 +53,29 @@
             <small class="text-danger">{{ $message }}</small>
         @enderror
 
-          
-          <div class="input-group mb-3">
-            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required value="{{old('email')}}">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-id-card"></span> <!-- Ikon KTP -->
-              </div>
+        <div class="input-group mb-3">
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required value="{{old('email')}}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span> <!-- Ikon user -->
             </div>
           </div>
-          @error('email')
-              <small class="text-danger">{{ $message }}</small>
-          @enderror
-          
-          <div class="input-group mb-3">
-            <input type="text" name="password" id="password" class="form-control" placeholder="Password" required value="{{old('password')}}">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-phone"></span> <!-- Ikon telepon -->
-              </div>
+        </div>
+        @error('email')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
+        
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
           </div>
-          @error('password')
-              <small class="text-danger">{{ $message }}</small>
-          @enderror
+        </div>
+        @error('password')
+            <small class="text-danger">{{ $message}}</small>
+        @enderror
           
         <div class="row">
           <!-- /.col -->
@@ -86,7 +85,7 @@
           <!-- /.col -->
         </div>
         <p class="mb-0">
-            <a href="{{route('login.admin')}}" class="text-center">Silahkan Login</a>
+            <a href="{{route('login.admin')}}" class="text-center">already have an account?</a>
           </p>
       </form>
 

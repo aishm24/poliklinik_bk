@@ -16,12 +16,10 @@ class PeriksaPasienController extends Controller
         $id_dokter = Auth::user()->dokter->id;
 
         $data = DaftarPoli::with(['pasien', 'jadwalPeriksa.dokter', 'periksa'])
-        ->whereHas('jadwalPeriksa', function ($query) use ($id_dokter) {
-            $query->where('id_dokter', $id_dokter);
-        })
-        ->whereHas('periksa') 
-        ->get();
-            
+            ->whereHas('jadwalPeriksa', function ($query) use ($id_dokter) {
+                $query->where('id_dokter', $id_dokter);
+            })->get();
+
         return view('content.periksaPasien.index', compact('data'));
     }
 

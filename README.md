@@ -29,6 +29,16 @@ Sebelum menjalankan proyek, pastikan perangkat Anda sudah memenuhi persyaratan b
     d. Generate Application Key: php artisan key:generate
 
 3. Migrasi Database: php artisan migrate
+    a. php artisan migrate --path=/database/migrations/2024_11_26_161055_create_polis_table.php
+    b. php artisan migrate --path=/database/migrations/2024_11_26_161045_create_dokters_table.php
+    c. php artisan migrate --path=/database/migrations/2024_11_26_160737_create_jadwal_periksas_table.php
+    d. php artisan migrate --path=/database/migrations/2024_11_26_160618_create_pasiens_table.php
+    e. php artisan migrate --path=/database/migrations/2024_11_26_160644_create_daftar_polis_table.php
+    f. php artisan migrate --path=/database/migrations/2024_11_26_160706_create_periksas_table.php
+    g. php artisan migrate --path=/database/migrations/2024_11_26_160721_create_obats_table.php
+    h. php artisan migrate --path=/database/migrations/2024_11_26_161007_create_detail_periksas_table.php
+    i. php artisan migrate --path=/database/migrations/2014_10_12_000000_create_users_table.php
+    j. php artisan migrate
 
 4. Jalankan Server Lokal: php artisan serve
 

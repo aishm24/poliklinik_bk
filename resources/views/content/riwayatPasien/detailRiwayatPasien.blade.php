@@ -62,10 +62,10 @@
                           <tr>
                               <td>{{ $loop->iteration }}</td>
                               <td>{{ $riwayat['tgl_periksa'] }}</td>
+                              <td>{{$riwayat['nama_pasien']}}</td>
                               <td>{{$riwayat['nama_dokter']}}</td>
                               <td>{{$riwayat['keluhan']}}</td>
                               <td>{{$riwayat['catatan']}}</td>
-                              <td>{{ $riwayat['catatan'] }}</td>
                               <td>
                                   <ul>
                                       @foreach ($riwayat['obat'] as $obat)

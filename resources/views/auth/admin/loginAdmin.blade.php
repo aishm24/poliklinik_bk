@@ -77,10 +77,12 @@
       </form>
 
       <div class="social-auth-links text-center mt-2 mb-3">
-        
       </div>
       <!-- /.social-auth-links -->
     </div>
+    <a href="{{route('starting')}}" class="btn btn-light">
+      <i class="fas fa-arrow-left"></i>
+    </a>
     <!-- /.card-body -->
   </div>
   <!-- /.card -->

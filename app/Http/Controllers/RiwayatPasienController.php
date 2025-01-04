@@ -43,6 +43,7 @@ class RiwayatPasienController extends Controller
             }
 
             $dataRiwayat[] = [
+                'nama_pasien' => $pasien->nama,
                 'tgl_periksa' => $periksa->tgl_periksa,
                 'nama_dokter' => $periksa->daftarPoli->jadwalPeriksa->dokter->nama ?? '-', // Nama dokter dari relasi
                 'keluhan' => $periksa->daftarPoli->keluhan ?? '-',          // Keluhan pasien

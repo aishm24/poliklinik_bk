@@ -62,6 +62,10 @@
                               <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="form-group">
+                          <label>Tanggal Periksa:</label>
+                          <input type="datetime-local" class="form-control" name="tgl_periksa" required>
+                        </div>
+                        {{-- <div class="form-group">
                             <label>Tanggal Periksa:</label>
                             <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
                                 <input type="text" name="tgl_periksa" class="form-control datetimepicker-input" data-target="#reservationdatetime" required />
@@ -69,7 +73,7 @@
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="inputCatatan">Catatan</label>
                             <input type="text" class="form-control" name="catatan" id="inputCatatan" placeholder="Catatan" required value="{{old('catatan')}}">

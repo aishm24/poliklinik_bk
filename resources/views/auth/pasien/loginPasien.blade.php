@@ -84,6 +84,9 @@
         <a href="{{route('register.pasien')}}" class="text-center">Register a new Pasien</a>
       </p>
     </div>
+    <a href="{{route('starting')}}" class="btn btn-light">
+      <i class="fas fa-arrow-left"></i>
+    </a>
     <!-- /.card-body -->
   </div>
   <!-- /.card -->

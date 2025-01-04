@@ -60,6 +60,7 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
 
         if($obat){
+            $obat->delete();
             return redirect()->route('index.obat')->with('success', 'Data berhasil dihapus.');
         }else{
             return redirect()->route('index.obat')->with('error', 'Data gagal dihapus.');

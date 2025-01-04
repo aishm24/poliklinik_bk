@@ -74,20 +74,23 @@
                             <td>{{ $item->keluhan }}</td>
                             <td>{{ $item->no_antrian }}</td>
                             <td>
-                                @if ($item->status === 'Belum diperiksa')
-                                    <a href="{{route('periksapasien', ['id' => $item->id])}}" class="btn btn-success">
-                                        <i class="fas fa-user-md"></i> Periksa
-                                    </a>
-                                @elseif ($item->status === 'Sudah diperiksa')
-                                  @if ($item->periksa)
-                                      <a href="{{ route('update.periksapasien', ['id' => $item->periksa->id]) }}" class="btn btn-primary">
+                              @if ($item->status === 'Belum diperiksa')
+                                  <a href="{{ route('periksapasien', ['id' => $item->id]) }}" class="btn btn-success">
+                                      <i class="fas fa-user-md"></i> Periksa
+                                  </a>
+                              @elseif ($item->status === 'Sudah diperiksa')
+                                  @php
+                                    $id_periksa = $item->periksa->id ?? null;
+                                  @endphp
+                                  @if ($id_periksa)
+                                      <a href="{{ route('update.periksapasien', ['id' => $id_periksa]) }}" class="btn btn-primary">
                                           <i class="fas fa-edit"></i> Edit
                                       </a>
                                   @else
-                                      <span class="text-muted">Belum ada data periksa</span>
+                                      <span class="text-muted">Tidak ada data periksa</span>
                                   @endif
-                                @endif
-                            </td>
+                              @endif
+                          </td>
                         </tr>
 
                         @endforeach
