@@ -13,10 +13,37 @@ class UserController extends Controller
 {
     public function registerAdminForm()
     {
-        return view('content.admin.createAdmin');
+        return view('auth.admin.registerAdmin');
     }
 
     public function registerAdmin(Request $request)
+    {
+        $validateAdmin = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users,email|max:255|email',
+            'password' => 'required|min:8'
+        ]);
+
+        $user = User::create([
+            'name' => $validateAdmin['name'],
+            'email' => $validateAdmin['email'],
+            'role' => 'admin',
+            'password' => Hash::make($validateAdmin['password']),
+        ]);
+
+        if($user){
+            return redirect()->route('login.admin')->with('success', 'Register Admin Berhasil!');
+        }else{
+            return redirect()->route('login.admin')->with('errors', 'Register Admin Gagal!');
+        }
+    }
+
+    public function createAdminForm()
+    {
+        return view('content.admin.createAdmin');
+    }
+
+    public function createAdmin(Request $request)
     {
         $validateAdmin = $request->validate([
             'name' => 'required|max:255',
@@ -103,8 +130,6 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
     }
-
-
 
     public function getAllAdmin()
     {

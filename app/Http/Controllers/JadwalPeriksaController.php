@@ -39,6 +39,14 @@ class JadwalPeriksaController extends Controller
 
         $dokter = Auth::user()->dokter;
 
+        $validasiHari = JadwalPeriksa::where('id_dokter', $dokter->id)
+        ->where('hari', $request->hari)
+        ->exists();
+
+        if($validasiHari){
+            return redirect()->route('create.jadwalperiksa')->with('error', 'Silahkan ganti hari, Karena sudah memiliki jadwal praktek pada hari tersebut.');
+        }
+
         JadwalPeriksa::create([
             'id_dokter' => $dokter->id,
             'hari' => $dataValidated['hari'],

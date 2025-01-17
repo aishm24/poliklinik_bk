@@ -22,14 +22,14 @@
     </div>
     <!-- /.content-header -->
 
-    @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-    @endif
     
     <!-- Main content -->
     <section class="content">
+      @if(session('error'))
+              <div class="alert alert-danger">
+                  {{ session('error') }}
+              </div>
+      @endif
       <div class="container-fluid">
         <div class="row">
             <div class="col-12">

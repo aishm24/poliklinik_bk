@@ -30,14 +30,14 @@ Route::get('/', function () {
 
 Route::get('login-admin', [UserController::class, 'loginAdminForm'])->name('login.admin');
 Route::post('submit-login-Admin', [UserController::class, 'loginAdmin'])->name('submit.login.admin');
+Route::get('/register-admin', [UserController::class, 'registerAdminForm'])->name('register.admin');
+Route::post('/submit-register-admin', [UserController::class, 'registerAdmin'])->name('submit.register.admin');
 
 Route::get('/register-pasien', [PasienController::class, 'registerPasienForm'])->name('register.pasien');
 Route::post('/submit-register-pasien', [PasienController::class, 'registerPasien'])->name('submit.register.pasien');
 Route::get('/login-pasien', [PasienController::class, 'LoginPasienForm'])->name('login.pasien');
 Route::post('/submit-login-pasien', [PasienController::class, 'LoginPasien'])->name('submit.login.pasien');
 
-Route::get('/register-admin', [UserController::class, 'registerAdminForm'])->name('register.admin');
-Route::post('/submit-register-admin', [UserController::class, 'registerAdmin'])->name('submit.register.admin');
 
 Route::get('/login-dokter', [DokterController::class, 'loginDokterForm'])->name('login.dokter');
 Route::post('/submit-login-dokter', [DokterController::class, 'loginDokter'])->name('submit.login.dokter');
@@ -51,6 +51,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/profil-admin', [UserController::class, 'profilAdmin'])->name('profil.admin');
         Route::post('/update-profil-admin', [UserController::class, 'updateProfilAdmin'])->name('update.profil.admin');
         Route::get('/index-admin', [UserController::class,'getAllAdmin'])->name('index.admin');
+        Route::get('/create-admin', [UserController::class, 'createAdminForm'])->name('create.admin');
+        Route::post('/submit-create-admin', [UserController::class, 'createAdmin'])->name('submit.create.admin');
         Route::delete('/delete-admin/{id}', [UserController::class, 'deleteAdmin'])->name('delete.admin');
         Route::post('/logout-admin', [UserController::class, 'logoutAdmin'])->name('logout.admin');
 
