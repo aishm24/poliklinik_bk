@@ -30,4 +30,9 @@ class Pasien extends Model
     {
         return $this->hasOne(User::class, 'id_pasien');
     }
+
+    public function konsultasi()
+    {
+        return $this->hasMany(Konsultasi::class, 'id_pasien', 'id');
+    }
 }

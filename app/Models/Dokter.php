@@ -34,4 +34,9 @@ class Dokter extends Model
     {
         return $this->hasOne(User::class, 'id_dokter');
     }
+
+    public function konsultasi()
+    {
+        return $this->hasMany(Konsultasi::class, 'id_dokter', 'id');
+    }
 }

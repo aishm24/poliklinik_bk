@@ -4,12 +4,14 @@ use App\Http\Controllers\DaftarPoliController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\JadwalPeriksaController;
+use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PeriksaPasienController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\RiwayatPasienController;
 use App\Http\Controllers\UserController;
+use App\Models\Konsultasi;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -47,10 +49,10 @@ Route::get('/daftar-poli/jadwal', [DaftarPoliController::class, 'getJadwal'])->n
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::middleware([ 'user.akses:admin'])->group(function () {
+    Route::middleware(['user.akses:admin'])->group(function () {
         Route::get('/profil-admin', [UserController::class, 'profilAdmin'])->name('profil.admin');
         Route::post('/update-profil-admin', [UserController::class, 'updateProfilAdmin'])->name('update.profil.admin');
-        Route::get('/index-admin', [UserController::class,'getAllAdmin'])->name('index.admin');
+        Route::get('/index-admin', [UserController::class, 'getAllAdmin'])->name('index.admin');
         Route::get('/create-admin', [UserController::class, 'createAdminForm'])->name('create.admin');
         Route::post('/submit-create-admin', [UserController::class, 'createAdmin'])->name('submit.create.admin');
         Route::delete('/delete-admin/{id}', [UserController::class, 'deleteAdmin'])->name('delete.admin');
@@ -79,9 +81,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/submit-create-obat', [ObatController::class, 'createObat'])->name('submit.create.obat');
         Route::put('/update-obat/{id}', [ObatController::class, 'updateObat'])->name('update.obat');
         Route::delete('/delete-obat/{id}', [ObatController::class, 'deleteObat'])->name('delete.obat');
-
     });
-    
+
     Route::middleware(['user.akses:dokter, admin'])->group(function () {
         Route::get('/profil-dokter', [DokterController::class, 'profilDokter'])->name('profil.dokter');
         Route::post('/update-profil-dokter/{id}', [DokterController::class, 'updateProfilDokter'])->name('update.profil.dokter');
@@ -91,7 +92,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/create-jadwalperiksa', [JadwalPeriksaController::class, 'createJadwalPeriksaForm'])->name('create.jadwalperiksa');
         Route::post('/submit-create-jadwalperiksa', [JadwalPeriksaController::class, 'createJadwalPeriksa'])->name('submit.create.jadwalperiksa');
         Route::put('/update-jadwalperiksa/{id}', [JadwalPeriksaController::class, 'updateJadwalPeriksa'])->name('update.jadwalperiksa');
-    
+
         Route::get('/index-periksapasien', [PeriksaPasienController::class, 'index'])->name('index.periksapasien');
         Route::get('/periksapasien/{id}', [PeriksaPasienController::class, 'periksaPasienForm'])->name('periksapasien');
         Route::post('/submit-periksapasien/{id}', [PeriksaPasienController::class, 'periksaPasien'])->name('submit.periksapasien');
@@ -101,8 +102,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/index-riwayatpasien', [RiwayatPasienController::class, 'index'])->name('index.riwayatpasien');
         Route::get('/detail-riwayatpasienform/{id}', [RiwayatPasienController::class, 'detailRiwayatPasienForm'])->name('detail.riwayatpasienform');
         Route::get('/detail-riwayatpasien/{id}', [RiwayatPasienController::class, 'detailRiwayatPasien'])->name('detail.riwayatpasien');
+
+        Route::get('/konsultasi-dokter', [KonsultasiController::class, 'indexDokter'])->name('index.konsultasi.dokter');
+        Route::put('/update-tanggapan/{id}', [KonsultasiController::class, 'tanggapanDokter'])->name('tanggapan.dokter');
     });
-    
+
     Route::middleware(['user.akses:pasien, admin'])->group(function () {
         Route::get('/profil-pasien', [PasienController::class, 'profilPasien'])->name('profil.pasien');
         Route::post('/update-profil-pasien/{id}', [PasienController::class, 'updateProfilPasien'])->name('update.profil.pasien');
@@ -114,6 +118,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/detail-daftarpoli/{id}', [DaftarPoliController::class, 'detailDaftarPoli'])->name('detail.daftarpoli');
         Route::get('/riwayat-daftarpoli/{id}', [DaftarPoliController::class, 'riwayatDaftarPoli'])->name('riwayat.daftarpoli');
 
+        Route::get('/konsultasi-pasien', [KonsultasiController::class, 'indexPasien'])->name('index.konsultasi.pasien');
+        Route::get('/create-konsultasi-pasien', [KonsultasiController::class, 'createKonsultasiPasienForm'])->name('form.konsultasi.pasien');
+        Route::post('/submit-konsultasi-pasien', [KonsultasiController::class, 'createKonsultasiPasien'])->name('create.konsultasi.pasien');
+        Route::put('/update-konsultasi/{id}', [KonsultasiController::class, 'updateKonsultasi'])->name('update.konsultasi');
+        Route::delete('/delete-konsultasi/{id}', [KonsultasiController::class, 'deleteKonsultasi'])->name('delete.konsultasi');
     });
 });
-
